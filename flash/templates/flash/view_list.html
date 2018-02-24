@@ -1,0 +1,23 @@
+    <!-- Albums -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Albums</h3>
+        </div>
+        {% if lists %}
+            {% for list in lists %}
+                <div class="col-sm-4 col-lg-2">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h2>{{ list.task }}</h2>
+
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+            </div>
+        {% endif %}
+    </div>

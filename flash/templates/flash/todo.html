@@ -1,0 +1,223 @@
+
+{% load staticfiles %}
+
+<html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Flatfy Free Flat and Responsive HTML5 Template ">
+    <meta name="author" content="">
+
+    <title>Navigr – To-Do List</title>
+
+    <!-- Custom CSS-->
+    <link href="{% static 'bootstrap/css/general.css' %}" rel="stylesheet">
+
+	 <!-- Owl-Carousel -->
+    <link href="{% static 'bootstrap/css/custom.css' %}" rel="stylesheet">
+	<link href="{% static 'bootstrap/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/owl.theme.css' %}" rel="stylesheet">
+	<link href="{% static 'bootstrap/css/style.css' %}" rel="stylesheet">
+	<link href="{% static 'bootstrap/css/animate.css' %}" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom Google Web Font -->
+    <link href="{% static 'bootstrap/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom CSS-->
+	<link rel="stylesheet" href="{% static 'todolist/styles.css' %}">
+
+	<script src="{% static 'bootstrap/js/modernizr-2.8.3.min.js' %}"></script>  <!-- Modernizr /-->
+	<!--[if IE 9]>
+	<script src="{% static 'bootstrap/js/PIE_IE9.js' %}"></script>
+	<![endif]-->
+	<!--[if lt IE 9]>
+	<script src="{% static 'bootstrap/js/PIE_IE678.js' %}"></script>
+	<![endif]-->
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'bootstrap/js/html5shiv.js' %}"></script>
+	<![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<title>To-do List</title>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<!-- Custom CSS -->
+	<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+
+
+
+</head>
+
+<div id="home" >
+<style>
+		body{
+			background: url({% static 'bootstrap/img/background.jpg' %});
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+</style>
+	<!-- Preloader
+		<div id="status"></div>
+ -->
+
+	<!-- NavBar-->
+	<nav class="navbar-default" role="navigation" >
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#home">Navigr</a>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+
+	<!--				<li class="menuItem"><a href="#credits">Credits</a></li> -->
+
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#contact">
+						<span class="glyphicon glyphicon-bell">
+							<span class="badge badge-notify" style="background-color:#f9344e; color:white;">{% if notification_count != 0  %}{{ notification_count }}{% endif%}</span>
+						</span></a>
+
+						<ul class="dropdown-menu">
+							{% if notification_count == 0  %}
+							  <li><a href="#">No new notifications</a></li>
+							{% else %}
+
+									{% for notification in all_notifications %}
+          								<li><a href="/music/getdirections.html">{{ notification.store_name }}</a></li>
+									{% endfor %}
+							{% endif %}
+        </ul>
+
+
+					</li>
+					<li class="menuItem"><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span></a></li>
+
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+
+
+<!--
+<script>
+var w;
+
+function startWorker() {
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w) == "undefined") {
+            w = new Worker("{% static 'todolist/worker.js' %}");
+        }
+        w.onmessage = function(event) {
+            document.getElementById("result").innerHTML = event.data;
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+    }
+}
+
+function stopWorker() {
+    w.terminate();
+    w = undefined;
+    //STOP Update
+}
+</script>
+-->
+    <form action="/music/start_search{{ user.id }}">
+<!-- <p>Function Counter <output id="result"></output></p>
+-->
+<div class="container">
+<h1> </h1>
+       <div class="btn-group pull-right">
+		   <p style="color:white; font-family:'Georgia'">Start my Notifications <button class="btn btn-small btn-info" type="submit" onclick="startWorker()"><span class="glyphicon glyphicon-play"></span></button>
+		    <button href="#" class="btn btn-small btn-danger" onclick="stopWorker()"><span class="glyphicon glyphicon-stop"></span></button>
+		   </p>
+       </div>
+<br><br>
+	</div>
+	</form>
+
+                    <form role="form"   method="post" class="login-form" id="blah">
+				                               {% csrf_token %}
+        		                    	 	<div class="form-group">
+				                    		<label class="sr-only" for="task">Username</label>
+				                        	<input type="text" name="task" placeholder="What do you want to do?" class="form-username form-control" id="task">
+				                        </div>
+								<input type="submit" value="Add" class="btn btn-primary add_button">
+				                    </form>
+
+
+
+
+
+{% for list in lists %}
+	<div class="form-group">
+<form action="/music/delete_task{{ list.id }}/" method="post">
+	{% csrf_token %}
+
+
+	<ol >
+	<li class="form-username form-control">
+        {{ list.task.strip }}
+		<div class='btn-group pull-right'>
+            <button class='btn btn-primary btn-success'><span class="glyphicon glyphicon-saved"></span></button>
+            <button class='btn btn-primary btn-warning'><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+
+
+
+	</li>
+
+</ol>
+
+	</form>
+    </div>
+
+
+
+	      {% endfor %}
+
+	</div>
+
+
+	<!--
+
+	<form method="POST" action="">
+
+    {% csrf_token %}
+
+
+		<input type="text" id="task" name="task">
+		<button type="submit" value="submit"></button>
+	</form>
+
+
+<form role ="form" method="post" action="{% url 'lists' %}" id="main_input_box">
+<label>
+<input type="text" class ="form-control" id="custom_textbox" name="Item" placeholder="What do you need to do?">
+<input type="submit" value="Add" class="btn btn-primary add_button">
+</label>
+</form>
+<form>
+<ol class="list-group list_of_items">
+</ol>
+</form>
+
+--></div>
+
+</body>
+
+</html>
