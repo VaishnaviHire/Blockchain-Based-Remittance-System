@@ -1,5 +1,5 @@
-# Flash---Blockchain-based-Remittances
-Flash is a blockchain based remittance system which can be used for cross-border money transaction.
+# Blockchain-Based-Remittance-System
+Flash is aBlockchain blockchain based remittance system which can be used for cross-border money transaction.
 
 The system is built on Multichain and Django.
 
